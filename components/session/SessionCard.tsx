@@ -6,16 +6,13 @@ type SessionCardProps = {
   system: string;
   date: string;
   kp: string;
-  memory?: string;
+  players?: string[];
 };
 
 /**
  * セッションカード
  *
- * eplogの本棚に並ぶ「一冊の本」を表現するコンポーネント。
- *
- * SNSの投稿カードではなく、
- * その卓で生まれた物語へ戻るための入口。
+ * eplogの本棚に並ぶ一冊の本。
  */
 export default function SessionCard({
   id,
@@ -23,72 +20,118 @@ export default function SessionCard({
   system,
   date,
   kp,
-  memory,
+  players,
 }: SessionCardProps) {
   return (
     <Link href={`/sessions/${id}`}>
       <article
         className="
           group
-          rounded-xl
+          relative
+          min-h-[260px]
+          overflow-hidden
+          rounded-lg
           border
           border-[var(--border)]
           bg-[var(--surface)]
-          p-8
+          px-8
+          py-10
+          pl-12
           transition-all
           duration-500
-          hover:-translate-y-1
+          hover:-translate-y-2
+          hover:shadow-xl
         "
       >
-        {/* システム名 */}
-        <p className="text-sm text-[var(--text-light)]">
+
+        {/* 本の背 */}
+        <div
+          className="
+            absolute
+            left-0
+            top-0
+            h-full
+            w-1
+            bg-[var(--primary)]
+            opacity-60
+          "
+        />
+
+
+        {/* システム */}
+        <p
+          className="
+            text-xs
+            tracking-[0.25em]
+            text-[var(--text-light)]
+          "
+        >
           {system}
         </p>
 
-        {/* 本のタイトル */}
+
+        {/* タイトル */}
         <h2
-          className="
-            mt-3
-            font-serif
-            text-2xl
-            text-[var(--primary)]
-            group-hover:underline
-          "
-        >
-          {title}
-        </h2>
+  className="
+   mt-6
+    max-w-[280px]
+    font-serif
+    text-2xl
+    leading-relaxed
+    tracking-wide
+    text-[var(--primary)]
+    group-hover:underline
+  "
+>
+  {title}
+</h2>
 
         {/* 日付 */}
-        <p className="mt-4 text-sm text-[var(--text-light)]">
+        <p
+          className="
+            mt-4
+            text-sm
+            text-[var(--text-light)]
+          "
+        >
           {date}
         </p>
 
 
-        {/* 一緒に遊んだ人 */}
-        <div className="mt-8 border-t border-[var(--border)] pt-5">
-          <p className="text-sm text-[var(--text-light)]">
-            KP
-          </p>
+     {/* 下部情報 */}
+<div
+  className="
+    mt-6
+    border-t
+    border-[var(--border)]
+    pt-5
+  "
+>
+  <p
+    className="
+      text-xs
+      text-[var(--text-light)]
+    "
+  >
+    KP
+  </p>
 
-          <p className="mt-1">
-            {kp}
-          </p>
-        </div>
+  <p className="mt-1">
+    {kp}
+  </p>
 
-
-        {/* 思い出の一文 */}
-        {memory && (
-          <p
-            className="
-              mt-6
-              line-clamp-3
-              leading-7
-              text-[var(--text-light)]
-            "
-          >
-            {memory}
-          </p>
-        )}
+  {players && (
+    <p
+      className="
+        mt-3
+        text-sm
+        text-[var(--text-light)]
+      "
+    >
+      同卓者 {players.length}人
+    </p>
+  )}
+</div>
 
       </article>
     </Link>

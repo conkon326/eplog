@@ -1,18 +1,8 @@
+import { sessions } from "@/data/sessions";
 import Container from "@/components/ui/Container";
 import Bookshelf from "@/components/book/Bookshelf";
 import ProfileHeader from "@/components/profile/ProfileHeader";
 import ProfileBio from "@/components/profile/ProfileBio";
-const sessions = [
-  {
-    id: "001",
-    title: "忘れられた館",
-    system: "Call of Cthulhu",
-    date: "2026.07.20",
-    kp: "こん ぽた",
-    memory:
-      "最後の選択を前に、みんなで長い時間話し合った。",
-  },
-];
 
 export default function ProfilePage() {
   return (
@@ -35,7 +25,6 @@ export default function ProfilePage() {
           eplogは、そんな一度きりの物語を
           いつでも帰れる場所として残しておくための本棚です。
         </ProfileBio>
-
 
         <div className="mt-20">
           <Bookshelf sessions={sessions} />
