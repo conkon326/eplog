@@ -5,6 +5,7 @@ type Props = {
   children: ReactNode;
   href?: string;
   type?: "button" | "submit";
+  disabled?: boolean;
 };
 
 /**
@@ -22,6 +23,7 @@ export default function Button({
   children,
   href,
   type = "button",
+  disabled = false,
 }: Props) {
   const className = `
     rounded-full
@@ -56,7 +58,12 @@ export default function Button({
   return (
     <button
       type={type}
-      className={className}
+      disabled={disabled}
+      className={
+        disabled
+          ? `${className} cursor-not-allowed opacity-50`
+          : className
+      }
     >
       {children}
     </button>

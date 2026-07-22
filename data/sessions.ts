@@ -8,10 +8,10 @@ export const sessions: Session[] = [{
   kp: "あまねさん",
 
   players: [
-    "羊野 野卯香",
-    "朝倉 美奈子",
-    "斎川 柚子",
-    "丸太 茂",
+    { name: "羊野 野卯香" },
+    { name: "朝倉 美奈子" },
+    { name: "斎川 柚子" },
+    { name: "丸太 茂" },
   ],
 
   memory:

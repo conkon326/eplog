@@ -1,5 +1,7 @@
+import type { ReactNode } from "react";
+
 type ProfileBioProps = {
-  children: string;
+  children: ReactNode;
 };
 
 /**

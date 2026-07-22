@@ -1,12 +1,16 @@
 import Link from "next/link";
 
+import type { SessionPlayer } from "@/types/session";
+
 type SessionCardProps = {
   id: string;
   title: string;
   system: string;
   date: string;
+  period?: string;
+  month?: string;
   kp: string;
-  players?: string[];
+  players?: SessionPlayer[];
 };
 
 /**
@@ -19,9 +23,14 @@ export default function SessionCard({
   title,
   system,
   date,
+  period,
+  month,
   kp,
   players,
 }: SessionCardProps) {
+  const displayDate = period || month || date;
+  const secondaryDate = period && month ? month : null;
+
   return (
     <Link href={`/sessions/${id}`}>
       <article
@@ -87,15 +96,12 @@ export default function SessionCard({
 </h2>
 
         {/* 日付 */}
-        <p
-          className="
-            mt-4
-            text-sm
-            text-[var(--text-light)]
-          "
-        >
-          {date}
-        </p>
+        <div className="mt-4 flex flex-col gap-1">
+          <p className="text-sm text-[var(--text-light)]">{displayDate}</p>
+          {secondaryDate ? (
+            <p className="text-xs text-[var(--text-light)]">{secondaryDate}</p>
+          ) : null}
+        </div>
 
 
      {/* 下部情報 */}
